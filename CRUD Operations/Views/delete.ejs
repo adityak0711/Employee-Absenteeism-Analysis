@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+    <title>Delete a Document</title>
+    <style>
+      body{
+        background-image: url('/images/Image1.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+    </style>
+    
+  </head>
+  <body>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+      
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item ">
+            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/userlist/">Display</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/newuser">Insert</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/delete">Delete</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/update">Update</a>
+          </li>
+          
+        </ul>
+      </div>
+    </nav>
+    <h1>Delete a Leave</h1>
+    
+
+    <form method="post" action="/deleteuser">
+      <div class="form-row">
+        <div class="form-group col-6">
+          <label for="sno">Enter Leave Id of the row to be deleted</label>
+          <input type="number" name="sno" class="form-control" id="sno" placeholder="Enter Leave Id" value=<%= userlist.length == 1 ? userlist[0]._id : '' %> >
+        </div>
+      </div>
+      <button type="submit" formaction="/queryuser" class="btn btn-primary">Submit</button>
+      <button type="submit" class="btn btn-danger">Delete</button>
+      
+    </form>
+    <p></p>
+    <div>
+      <% if(userlist.length>0){ %>
+      <table class="table table-striped table-bordered">
+        <thead>
+          <tr class="bg-primary">
+            <th>Leave Id</th>
+            <th>Emp Id</th>
+            <th>Reason</th>
+            <th>Month</th>
+            <th>Day</th>
+            <th>Age</th>
+            <th>Children</th>
+            <th>Hours</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%
+            var list = '';
+            for (i = 0; i < userlist.length; i++) {
+              
+              list += '<tr><td>' + userlist[i]._id + '</td><td>' + userlist[i].empId + '</td><td>' + userlist[i].reason + '</td><td>' + userlist[i].month + '</td><td>' + userlist[i].day + '</td><td>' + userlist[i].age + '</td><td>' + userlist[i].children + '</td><td>' + userlist[i].hours + '</td></tr>';
+              
+            }
+          %>
+          <%- list %>
+        </tbody>
+      </table>
+      <%  } %>
+    </div>
+
+  </body>
+</html>
